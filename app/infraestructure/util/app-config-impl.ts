@@ -1,5 +1,5 @@
 import { AppConfig } from '~/common/interfaces/app-config';
-import { AuthUser } from '~/common/models';
+import { AuthUser } from '~/common/models/auth-user';
 import { RouteGeneratos } from '~/common/utils/route.generator';
 
 export class AppConfigImpl implements AppConfig {

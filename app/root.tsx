@@ -3,7 +3,6 @@ import { unstable_defineLoader as defineLoader, LinksFunction } from '@remix-run
 import styles from './styles/styles.css?url';
 import { Box, CssBaseline, ThemeProvider, Typography } from '@mui/material';
 import { theme } from './styles/emotion';
-import { AuthenticityTokenProvider } from './infraestructure/providers/authenticity-token';
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
 
@@ -40,13 +39,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { csrf } = useLoaderData<typeof loader>();
 
-  return (
-    <AuthenticityTokenProvider token={csrf}>
-      <Outlet />
-    </AuthenticityTokenProvider>
-  );
+  return <Outlet />;
 }
 
 export function ErrorBoundary() {

@@ -4,13 +4,14 @@ import { TestData } from '~/components/TestData';
 import { validateCSRFToken } from '~/infraestructure/services/csrf.server';
 
 export const loader = defineLoader(async ({ request }) => {
-  console.log('-------- ContactosRoute loader --------');
   // await new Promise((resolve) => setTimeout(resolve, 500));
 
   const url = new URL(request.url);
   const search = url.searchParams.get('search');
 
-  const contactosResp = loadData();
+  const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+  const contactosResp = loadData().then((result) => delay(0).then(() => result));
+  // const contactosResp = loadData();
   return { contactosResp, filters: { search } };
 });
 

@@ -8,8 +8,10 @@ export function TestData({ dataPromise }: { dataPromise: Promise<any> }) {
   const [state, setState] = useState();
 
   useEffect(() => {
-    console.log('fetcher.state', fetcher.state);
-    console.log('fetcher.data', fetcher.data);
+    console.log('fetcher.state', fetcher.state, fetcher.data);
+    if (fetcher.state === 'idle') {
+      console.log('');
+    }
   }, [fetcher.data, fetcher.state]);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { AuthUser } from '../models';
+import { AuthUser } from '../models/auth-user';
 import { RouteGeneratos } from '../utils/route.generator';
 
 export interface AppConfig {
