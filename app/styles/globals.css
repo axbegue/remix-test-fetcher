@@ -1,0 +1,22 @@
+html,
+body {
+  height: 100%;
+  color-scheme: dark;
+}
+
+/* input:-webkit-autofill {
+  -webkit-box-shadow: none !important;
+} */
+
+input:-webkit-autofill,
+.my-class:-webkit-autofill {
+  -webkit-transition-delay: 9999999s;
+  transition-delay: 9999999s;
+}
+
+/* Css */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import { useFetcher } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 
@@ -31,9 +32,9 @@ export function TestData({ dataPromise }: { dataPromise: Promise<any> }) {
   return (
     <div className="font-sans p-4">
       <h1 className="text-3xl">Welcome to Remix</h1>
-      <button className="button" onClick={handleClick}>
+      <Button variant="contained" onClick={handleClick}>
         Load Data
-      </button>
+      </Button>
       <pre>{JSON.stringify(state, null, 2)}</pre>
     </div>
   );
