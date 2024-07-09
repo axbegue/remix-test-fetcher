@@ -1,10 +1,21 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
+import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData, useRouteError } from '@remix-run/react';
+import { unstable_defineLoader as defineLoader, LinksFunction } from '@remix-run/node';
 import styles from './styles/styles.css?url';
-import { LinksFunction } from '@remix-run/node';
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import { Box, CssBaseline, ThemeProvider, Typography } from '@mui/material';
 import { theme } from './styles/emotion';
+import { AuthenticityTokenProvider } from './infraestructure/providers/authenticity-token';
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
+
+// const session = createSessionMiddleware(sessionStorage);
+// export const middleware = serverOnly$([session, csrfSeed]);
+
+export const loader = defineLoader(async () => {
+  // const csrfSeed = typeof context.get === 'function' ? context.get(CsrfContext) : '';
+  // const csrf = createCSRFToken(process.env.CSRF_FORM_ID!, csrfSeed);
+  const csrf = 'createCSRFToken';
+  return { csrf };
+});
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -29,5 +40,23 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  const { csrf } = useLoaderData<typeof loader>();
+
+  return (
+    <AuthenticityTokenProvider token={csrf}>
+      <Outlet />
+    </AuthenticityTokenProvider>
+  );
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+  const message = isRouteErrorResponse(error) ? error.data : (error as Error).message;
+  return (
+    <Box sx={{ m: 4 }}>
+      <Typography variant="h4" component="h1" sx={{ mb: 2 }} color="red">
+        {message ?? 'An error occurred'}
+      </Typography>
+    </Box>
+  );
 }

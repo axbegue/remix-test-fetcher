@@ -14,6 +14,7 @@ import { renderToPipeableStream } from 'react-dom/server';
 
 import { CacheProvider } from '@emotion/react';
 import { createEmotionCache } from './styles/emotion';
+import { container } from './infraestructure/di/inversify.config';
 
 const ABORT_DELAY = 5_000;
 
@@ -157,3 +158,6 @@ function handleEmotionRequest(request: Request, responseStatusCode: number, resp
     setTimeout(abort, ABORT_DELAY);
   });
 }
+
+// // container;
+Promise.resolve(container);
