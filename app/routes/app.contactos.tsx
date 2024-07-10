@@ -4,7 +4,8 @@ import { TestData } from '~/components/TestData';
 import { validateCSRFToken } from '~/infraestructure/services/csrf.server';
 
 export const loader = defineLoader(async ({ request }) => {
-  // await new Promise((resolve) => setTimeout(resolve, 500));
+  // If you add this await, the problem almost never occurs
+  // await new Promise((resolve) => setTimeout(resolve, 100));
 
   const url = new URL(request.url);
   const search = url.searchParams.get('search');
