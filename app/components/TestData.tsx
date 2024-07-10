@@ -48,7 +48,7 @@ export function TestData({ dataPromise }: { dataPromise: Promise<any> }) {
               <TextField
                 id="identificacion"
                 name="identificacion"
-                required
+                // required
                 label="Identificacion"
                 variant="outlined"
                 defaultValue={contacto?.identificacion}
@@ -58,7 +58,7 @@ export function TestData({ dataPromise }: { dataPromise: Promise<any> }) {
               <TextField
                 id="nombre"
                 name="nombre"
-                required
+                // required
                 label="Nombre"
                 variant="outlined"
                 defaultValue={contacto?.nombre}
