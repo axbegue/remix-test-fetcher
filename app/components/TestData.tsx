@@ -39,7 +39,7 @@ export function TestData({ dataPromise }: { dataPromise: Promise<any> }) {
 
   // If you add a form with a lot of fields, the problem is more likely to occur
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       <Form method="POST" onSubmit={handleClick}>
         <Box p={globals.size.s500}>
           <Box sx={{ p: 0, paddingTop: '10px' }}>
@@ -125,8 +125,8 @@ export function TestData({ dataPromise }: { dataPromise: Promise<any> }) {
           </Box>
         </Box>
       </Form>
-      <pre>{JSON.stringify(state, null, 2)}</pre>
-    </>
+      <p style={{ width: '100px', overflow: 'hidden' }}>{JSON.stringify(state)}</p>
+    </div>
   );
 
   // If you simplify the form, the problem is less likely to occur
